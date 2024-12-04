@@ -24,5 +24,5 @@ void setup() {
 }
 
 void loop() {
-  uint16_t MotorRPM = myMotorCell.SpinPID(20000); /* Set the target RPM to 30,000 using the PID controller */
+  uint16_t MotorRPM = myMotorCell.SpinPID(15000); /* Set the target RPM to 15,000 using the PID controller */
 }
