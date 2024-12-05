@@ -106,7 +106,11 @@ Here’s a basic example to get started with MotorCell:
 ```cpp
 #include "MotorCell.h"
 
-MotorCell myMotorCell(5, 6, 7);  // Define MotorCell pins (IN, OUT, FR)
+#define IN_pin1 2
+#define OUT_pin2 3
+#define FR_pin2 1
+
+MotorCell myMotorCell(IN_PIN, OUT_PIN, FR_PIN);
 
 void setup() {
     myMotorCell.Init();         // Initialize MotorCell
