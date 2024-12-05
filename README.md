@@ -10,12 +10,12 @@ MotorCell is an ultra-compact, shaftless PCB motor designed for high-speed, low-
 
 - **Pins**:
   - `IN`: PWM input for speed control.
-  - `OUT`: Speed reading (requires pull-up resistor).
+  - `OUT`: Speed reading (requires pull-up resistor - library automatical setup up this pin through software)
   - `FR`: Direction control.
 
 ### 2. Using the MotorCell Library
 
-Install the library from the Arduino Library manager and include it in your Arduino project:
+Install the library from the Arduino Library manager and include it in your Arduino project. Multipel examples as avilable to get you started.
 
 ```cpp
 #include "MotorCell.h"
@@ -51,7 +51,7 @@ myMotorCell.Init();
 uint16_t rpm = myMotorCell.Spin(75); // Spin at 75% speed
 ```
 
-### 3. **SpinPID**
+### 3. **SpinPID - for CodeCell/ESP32 devices**
 - **Function:** `SpinPID(uint16_t target_rpm)`
 - **Description:** Uses PID control to maintain a target RPM (requires ESP32 or similar).
 
