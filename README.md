@@ -45,15 +45,15 @@ myMotorCell.Init();
 
 ### 2. **Spin**
 - **Function:** `Spin(uint8_t speed_percent)`
-- **Description:** Spins the motor at the specified speed.
+- **Description:** Spins the motor at the specified speed level and return the current rpm value.
 
 ```cpp
 uint16_t rpm = myMotorCell.Spin(75); // Spin at 75% speed
 ```
 
-### 3. **SpinPID - for CodeCell/ESP32 devices**
+### 3. **SpinPID (for CodeCell/ESP32 devices)**
 - **Function:** `SpinPID(uint16_t target_rpm)`
-- **Description:** Uses PID control to maintain a target RPM (requires ESP32 or similar).
+- **Description:** Uses PID control to maintain a target RPM and return the current rpm value.
 
 ```cpp
 uint16_t rpm = myMotorCell.SpinPID(10000); // Spin at 10,000 RPM
