@@ -34,9 +34,9 @@ void MotorCell::Init() {
 #endif
 
 
-  Serial.print("MC#");
+  Serial.print(">> MotorCell");
   Serial.print(_motor_num);
-  Serial.println("Completed");
+  Serial.println(": Ready to Use");
 }
 
 
@@ -70,9 +70,9 @@ uint16_t MotorCell::Spin(uint8_t speed_percent) {
       _si = 0;
     }
 
-    Serial.print("MC#");
+    Serial.print(">> MotorCell");
     Serial.print(_motor_num);
-    Serial.print(" @ ");
+    Serial.print(": ");
     Serial.print(average_speed / 1000);
     Serial.println(" kRPM");
     _error_flag = 0;
@@ -81,14 +81,14 @@ uint16_t MotorCell::Spin(uint8_t speed_percent) {
     if (_error_flag == 0) {
       speed_percentlast = 0;
       if (_motorspeed < 5U) {
-        Serial.print("MC#");
+        Serial.print(">> MotorCell");
         Serial.print(_motor_num);
-        Serial.println(" Speed Percentage too low");
+        Serial.println(": Speed Percentage too low");
         _error_flag = 1;
       } else {
-        Serial.print("MC#");
+        Serial.print(">> MotorCell");
         Serial.print(_motor_num);
-        Serial.println(" Hualt Error - Reseting..");
+        Serial.println(": Hualt Error - Reseting..");
         Reset(255);
       }
     } else {
@@ -124,18 +124,20 @@ uint16_t MotorCell::SpinPID(uint16_t speed_rpm_target) {
 
   if (speed_rpm_target < 2000U) {
     speed_rpm_target = 2000U;
-    Serial.print(" Speed too low");
+    Serial.print(">> MotorCell");
+    Serial.print(_motor_num);
+    Serial.println(": Input Speed too low");
   }
 
   rpm_speed = pulseIn(_OUT, HIGH); /*Wait for the next pulse to get rpm-time*/
   if ((_u_output > 0) && (rpm_speed == 0u)) {
-    Serial.print("MC#");
+    Serial.print(">> MotorCell");
     Serial.print(_motor_num);
-    Serial.println(" Hualt Error - Reseting..");
+    Serial.println(": Hualt Error - Reseting..");
     Reset(50U);
   } else {
 
-    Serial.print(" MC#");
+    Serial.print(">> MotorCell");
     Serial.print(_motor_num);
     if ((_u_output > 0) && (rpm_speed > 0)) {
       _array_average_speed[_si] = (60000000 / (rpm_speed * 4u)); /*Get RPM value - MicroSeconds rpm-time multiply by Pole value(4) */
@@ -176,7 +178,7 @@ uint16_t MotorCell::SpinPID(uint16_t speed_rpm_target) {
           if (_spin_error < 350) {
             _spin_error++;
           } else {
-            Serial.print(" Speed cannot be reached - Reduce Speed or Load ");
+            Serial.print(": Speed cannot be reached - Reduce Speed or Load ");
           }
         }
       } else if (_u_output < 0U) {
@@ -186,7 +188,7 @@ uint16_t MotorCell::SpinPID(uint16_t speed_rpm_target) {
         _spin_error = 0U;
       }
 
-      Serial.print(" @ ");
+      Serial.print(": ");
       Serial.print(average_speed / 1000);
       Serial.println(" kRPM");
 
@@ -197,22 +199,6 @@ uint16_t MotorCell::SpinPID(uint16_t speed_rpm_target) {
     }
   }
 
-  // Serial.print(" average_speed");
-  // Serial.print(average_speed);
-  // Serial.print(" rpm_speed");
-  // Serial.print(rpm_speed);
-  // Serial.print(" error");
-  // Serial.print(error);
-  // Serial.print(" (Kp * error)");
-  // Serial.print(Kp * error);
-  // Serial.print(" (Ki * _integral) ");
-  // Serial.print(Ki * _integral);
-  // Serial.print(" (_integral) ");
-  // Serial.print(_integral);
-  // Serial.print(" (Kd * derivative) ");
-  // Serial.print(Kd * derivative);
-  // Serial.print(" output ");
-  // Serial.print(output);
   return average_speed;
 }
 
