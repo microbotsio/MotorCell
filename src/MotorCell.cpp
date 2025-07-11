@@ -210,7 +210,7 @@ void MotorCell::Reset(uint8_t speed_percent) {
 }
 #endif
 
-void MotorCell::Pulse(uint8_t p_pin, uint8_t ms_duration) {
+void MotorCell::Pulse(uint8_t p_pin, uint16_t ms_duration) {
   pinMode(p_pin, OUTPUT);    /*Set up FR-pin as output*/
   digitalWrite(p_pin, HIGH); /*Set up initial direction*/
   delay(ms_duration);
