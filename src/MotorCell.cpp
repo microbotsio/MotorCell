@@ -22,15 +22,15 @@ void MotorCell::Init() {
 #if defined(ARDUINO_ARCH_ESP32)
   ledcAttach(_IN, MOTOR_BASE_FREQ, MOTOR_TIMER);
   ledcWrite(_IN, 0);
-  Reset(255);
-  rpm_speed = pulseIn(_OUT, HIGH); /*Wait for the next pulse to get rpm-time*/
+ // Reset(255);
+ // rpm_speed = pulseIn(_OUT, HIGH); /*Wait for the next pulse to get rpm-time*/
 
-  if (rpm_speed > 0) {
-    rpm_speed = (60000000 / (rpm_speed * 4u)); /*Get RPM value - MicroSeconds rpm-time multiply by Pole value(4) */
-    for (int sii = 0; sii < SPEED_FILTER; sii++) {
-      _array_average_speed[sii] = rpm_speed;
-    }
-  }
+//  if (rpm_speed > 0) {
+ //   rpm_speed = (60000000 / (rpm_speed * 4u)); /*Get RPM value - MicroSeconds rpm-time multiply by Pole value(4) */
+ //   for (int sii = 0; sii < SPEED_FILTER; sii++) {
+ //     _array_average_speed[sii] = rpm_speed;
+//    }
+//  }
 #endif
 
 
