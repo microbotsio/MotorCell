@@ -35,7 +35,7 @@ public:
   void Init();
   void ReverseSpin();
   void MaxSpin();
-  void Pulse(uint8_t p_pin, uint8_t ms_duration);
+  void Pulse(uint8_t p_pin, uint16_t ms_duration);
   uint16_t RPMRead();
 #if defined(ARDUINO_ARCH_ESP32)
   void Reset(uint8_t speed_percent);
